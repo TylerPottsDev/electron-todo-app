@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>New Todo</title>
+</head>
+<body>
+	<h2>Create new todo</h2>
+	<form>
+		<label for="todo">Enter Todo:</label>
+		<input type="text" name="todo" id="todo" />
+	</form>
+
+	<script>
+		const electron = require('electron');
+		const {ipcRenderer} = electron;
+
+		const form = document.querySelector('form');
+		form.addEventListener('submit', submitForm);
+
+		function submitForm (e) {
+			e.preventDefault();
+			const todo = document.querySelector('#todo');
+
+			if (todo.value == '') {
+				alert('Please enter a todo');
+				return;
+			}
+
+			ipcRenderer.send('todo:new', todo.value);
+			todo.value = '';
+		}
+	</script>
+</body>
+</html>

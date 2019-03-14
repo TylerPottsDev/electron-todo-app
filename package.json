@@ -1,0 +1,14 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Tyler Potts",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.0.8"
+  }
+}

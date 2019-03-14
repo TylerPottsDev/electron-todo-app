@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Electron app</title>
+</head>
+<body>
+	<h1>Hello, World!</h1>
+	<ul></ul>
+
+	<script>
+		const electron = require('electron');
+		const { ipcRenderer } = electron;
+
+		const list = document.querySelector('ul');
+
+		ipcRenderer.on('todo:new', function (e, todo) {
+			let li = document.createElement('li');
+			li.textContent = todo;
+
+			li.addEventListener('click', function () {
+				li.parentNode.removeChild(li);
+			});
+
+			list.appendChild(li);
+		});
+	</script>
+</body>
+</html>
